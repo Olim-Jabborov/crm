@@ -9,11 +9,16 @@ class Role extends Model
 {
     use HasFactory;
 
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
+//    public function getRouteKeyName()
+//    {
+//        return 'name';
+//    }
 
 //    protected $fillable = ['name'];
-    protected $guarded = ['name'];
+    protected $guarded = [];
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'role_id', 'id');
+    }
 }

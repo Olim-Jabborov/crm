@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
@@ -16,7 +17,6 @@ class RolesController extends Controller
 
 //        return response()->json([$request->only('name')]);
         Role::create($request->only('name'));
-
         return response()->json(true);
     }
 
@@ -59,5 +59,10 @@ class RolesController extends Controller
     public function show_role($id){
         $role = Role::find($id);
         return response()->json(['data'=>$role]);
+    }
+
+    public function users(Role $role)
+    {
+        return $role->user()->get();
     }
 }
